@@ -13,13 +13,19 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
-    "react-native-web": "~0.13.12"
+    "react-native-offline": "^5.8.0",
+    "react-native-paper": "^4.7.2",
+    "react-native-table-component": "^1.2.1",
+    "react-native-vector-icons": "^8.1.0",
+    "react-native-web": "~0.13.12",
+    "react-query": "^3.12.2"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
     "@types/react": "~16.9.35",
     "@types/react-dom": "~16.9.8",
     "@types/react-native": "~0.63.2",
+    "@types/react-native-table-component": "^1.2.0",
     "typescript": "~4.0.0"
   },
   "private": true
