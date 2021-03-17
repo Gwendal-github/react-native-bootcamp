@@ -14,7 +14,7 @@ const ModalCard = ({item, children}) => {
     <TouchableOpacity onPress={changeModalState}>
       {children}
       <Modal visible={visible} onDismiss={changeModalState} contentContainerStyle={styles.modal}>
-        <Text>{item.name}</Text>
+        <Text style={styles.title}>{item.name}</Text>
       </Modal>
     </TouchableOpacity>
   );
@@ -102,7 +102,8 @@ const styles = StyleSheet.create({
     borderStyle : 'solid',
     borderColor: 'black',
     borderWidth: 1,
-    marginBottom : 3
+    marginBottom : 3,
+    zIndex : 0
   },
   table: {
     borderColor: 'black',
@@ -116,6 +117,7 @@ const styles = StyleSheet.create({
   modal: {
     backgroundColor: 'white', 
     padding: 20,
+    zIndex : 1
   }
 });
 
