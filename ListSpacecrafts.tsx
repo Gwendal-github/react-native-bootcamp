@@ -25,9 +25,10 @@ const ModalCard = ({ item, children }) => {
         <Modal
           visible={visible}
           onDismiss={changeModalState}
+          
           contentContainerStyle={styles.modal}
         >
-          <Text style={styles.title}>{item.name}</Text>
+          <Text style={[styles.title,styles.titleModal]}>{item.name}</Text>
         </Modal>
       </Portal>
     </TouchableOpacity>
@@ -110,8 +111,11 @@ const styles = StyleSheet.create({
   },
   modal: {
     backgroundColor: Colors.purple300,
-    flex: 1,
+    flex: 0.5,
   },
+  titleModal: {
+    marginTop: 0,
+  }
 });
 
 export default ListSpacecrafts;
