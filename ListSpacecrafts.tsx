@@ -39,19 +39,17 @@ const renderItem = ({ item }) => {
   };
 
   return (
-    <View>
-      <ModalCard item={item}>
-        <Card style={styles.card}>
-          <Text style={styles.title}>{item.name}</Text>
-          <Text style={styles.subtitle}>{item.model}</Text>
-          <Table style={styles.table}>
-            <Row data={dataTable.tableHead} style={styles.row} />
-            <Row data={dataTable.tableData} style={styles.row} />
-          </Table>
-          <Text style={styles.subtitle}>Price : {item.cost_in_credits}</Text>
-        </Card>
-      </ModalCard>
-    </View>
+    <ModalCard item={item}>
+      <Card style={styles.card}>
+        <Card.Title title={item.name} />
+        <Text style={styles.subtitle}>{item.model}</Text>
+        <Table style={styles.table}>
+          <Row data={dataTable.tableHead} style={styles.row} />
+          <Row data={dataTable.tableData} style={styles.row} />
+        </Table>
+        <Text style={styles.subtitle}>Price : {item.cost_in_credits}</Text>
+      </Card>
+    </ModalCard>
   );
 };
 
@@ -81,21 +79,6 @@ const FeedSpaceCraft = ({ data }) => {
 };
 
 const styles = StyleSheet.create({
-  safeContainer: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
-  },
-  flatlist: {
-    marginBottom: 15,
-  },
-  container: {
-    paddingHorizontal: 20,
-    marginTop: 20,
-  },
-  item: {
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
   title: {
     fontSize: 24,
     textAlign: 'center',
@@ -105,12 +88,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   card: {
-    backgroundColor: '#ecf0f1',
-    padding: 6,
+    backgroundColor: Colors.amber200,
+    padding: 8,
     borderStyle: 'solid',
-    borderColor: 'black',
-    borderWidth: 1,
-    marginBottom: 3,
+    borderColor: Colors.amber600,
+    borderWidth: 4,
+    marginBottom: 32,
   },
   table: {
     borderColor: 'black',
@@ -122,7 +105,7 @@ const styles = StyleSheet.create({
     marginLeft: 50,
   },
   modal: {
-    backgroundColor: Colors.yellow300,
+    backgroundColor: Colors.purple300,
     flex: 1,
   },
 });
