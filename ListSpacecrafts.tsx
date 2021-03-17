@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import { Table, Row } from 'react-native-table-component';
-import { Card, Colors, Modal } from 'react-native-paper';
+import { Card, Colors, Modal, Portal, Provider } from 'react-native-paper';
 import { useQuery } from 'react-query';
 import fetchAsync from './lib/fetch';
 import AppLayout from './AppLayout';
@@ -21,13 +21,15 @@ const ModalCard = ({ item, children }) => {
   return (
     <TouchableOpacity onPress={changeModalState}>
       {children}
-      <Modal
-        visible={visible}
-        onDismiss={changeModalState}
-        contentContainerStyle={styles.modal}
-      >
-        <Text style={styles.title}>{item.name}</Text>
-      </Modal>
+      <Portal>
+        <Modal
+          visible={visible}
+          onDismiss={changeModalState}
+          contentContainerStyle={styles.modal}
+        >
+          <Text style={styles.title}>{item.name}</Text>
+        </Modal>
+      </Portal>
     </TouchableOpacity>
   );
 };
@@ -68,9 +70,11 @@ const ListSpacecrafts = () => {
   }
 
   return (
-    <AppLayout title="Starships">
-      <FeedSpaceCraft data={data} />
-    </AppLayout>
+    <Provider>
+      <AppLayout title="Starships">
+        <FeedSpaceCraft data={data} />
+      </AppLayout>
+    </Provider>
   );
 };
 
