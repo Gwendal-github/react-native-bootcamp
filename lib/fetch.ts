@@ -1,4 +1,4 @@
-export default async function fetchAsync() {
-    const res = await fetch('https://swapi.dev/api/starships/');
+export default async function fetchAsync(url: string) {
+    const res = await fetch(url);
     return await res.json();
 }

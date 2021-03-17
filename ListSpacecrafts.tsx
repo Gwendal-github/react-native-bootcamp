@@ -4,15 +4,16 @@ import { Table, Row } from 'react-native-table-component';
 import { Card,Modal } from 'react-native-paper';
 import {useQuery } from 'react-query'
 import fetchAsync from './lib/fetch'
+import AppLayout from './AppLayout';
 
 
-const ModalCard = (item) => {
+const ModalCard = ({item, children}) => {
   const [visible, setVisible] = React.useState(false);
-  const showModal = () => setVisible(true);
-  const hideModal = () => setVisible(false);
+  const changeModalState = () => {setVisible(!visible)};
   return (
-    <TouchableOpacity onPress={showModal}>
-      <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={{backgroundColor: 'white', padding: 20}}>
+    <TouchableOpacity onPress={changeModalState}>
+      {children}
+      <Modal visible={visible} onDismiss={changeModalState} contentContainerStyle={styles.modal}>
         <Text>{item.name}</Text>
       </Modal>
     </TouchableOpacity>
@@ -24,9 +25,10 @@ const renderItem=({item}) => {
         tableHead: ['Crew Size','Cargo Capacity'],
         tableData: [item.crew,item.cargo_capacity]
     }
-    console.log(item.nom); 
-    /*return(
+
+    return(
       <View>
+        <ModalCard item={item}> 
         <Card style={styles.card}>
         <Text style={styles.title}>{item.name}</Text>
         <Text style={styles.subtitle}>{item.model}</Text>
@@ -34,32 +36,37 @@ const renderItem=({item}) => {
             <Row data={dataTable.tableHead} style={styles.row}/>
             <Row data={dataTable.tableData} style={styles.row}/>
         </Table>
-        <Text style={styles.subtitle}>Price : {item.cost_in_credits}</Text>   
+        <Text style={styles.subtitle}>Price : {item.cost_in_credits}</Text>
         </Card>
+        </ModalCard>
+        
+        
       </View>
-    );*/
-    return(<Text>Ca marche</Text>)
+    );
 };
 
 const ListSpacecrafts = () => {
   
-  const {isLoading, isError,data, error} = useQuery('data',() => fetchAsync);
+  const {isLoading, isError,data, error} = useQuery('data',() => fetchAsync(`https://swapi.dev/api/starships/`));
   if(isLoading) {
-    console.log("Loading...");
-  }
+    return(<AppLayout title="Loading..."></AppLayout>);
+  };
   if(isError){
-    console.log("error : "+error);
+    return(<AppLayout title="Error"></AppLayout>);
   }
-  console.log("START : "+data+" FIN");
+  if(data === undefined) {
+    return(<AppLayout title="Data not found"></AppLayout>);
+  }
+
   return (
-    <View>
+    <AppLayout title="Starships" >
       <FeedSpaceCraft data={data} />
-    </View> 
+    </AppLayout> 
   )
   
 };
 
-const FeedSpaceCraft = (data) => {
+const FeedSpaceCraft = ({data}) => {
   return (
     <FlatList data={data.results} renderItem={renderItem} /> 
   );
@@ -105,6 +112,10 @@ const styles = StyleSheet.create({
   },
   row: {
     marginLeft : 50
+  },
+  modal: {
+    backgroundColor: 'white', 
+    padding: 20,
   }
 });
 

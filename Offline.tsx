@@ -8,7 +8,7 @@ const Offline = () => {
     <View>
         <NetworkConsumer>
             {({ isConnected }) =>
-                isConnected ? (
+                !isConnected ? (
                 <Text>Vous êtes en ligne !</Text>
                 ) : (
                 <Text>Offline, Reconnecting... <ActivityIndicator size="small" /></Text>
