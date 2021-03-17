@@ -5,11 +5,10 @@ import ListSpacecrafts from './ListSpacecrafts';
 const queryClient = new QueryClient();
 
 const App = () => {
-
   return (
     <QueryClientProvider client={queryClient}>
-        <ListSpacecrafts />
-    </QueryClientProvider> 
+      <ListSpacecrafts />
+    </QueryClientProvider>
   );
 };
 
