@@ -57,6 +57,7 @@ const renderItem = ({ item }) => {
 };
 
 const ListSpacecrafts = () => {
+<<<<<<< Updated upstream:ListSpacecrafts.tsx
   const { isLoading, isError, data, error } = useQuery('data', () =>
     fetchAsync(`https://swapi.dev/api/starships/`)
   );
@@ -70,6 +71,26 @@ const ListSpacecrafts = () => {
     return <AppLayout title="Data not found"></AppLayout>;
   }
 
+=======
+  
+  const {isLoading, isError, data , error} = useQuery('data',() => fetchAsync);
+  if(isLoading) {
+    return(<Text>Loading...</Text>);
+  }
+  if(isError){
+    return(<Text>"Erreur : "{error}</Text>);
+  }
+  return (
+    <View>
+      <FeedSpaceCraft data={JSON.stringify(data)} />
+    </View> 
+  )
+  
+};
+
+const FeedSpaceCraft = (data) => {
+  //console.log("Feed : "+data.results);
+>>>>>>> Stashed changes:src/components/ListSpacecrafts.tsx
   return (
     <Provider>
       <AppLayout title="Starships">
