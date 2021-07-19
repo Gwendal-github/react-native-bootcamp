@@ -1,4 +1,6 @@
-///////////// Programming ////////////////
+# Cheatcodes
+
+## Programming   
 
 ife⇥
 if (${1:condition}) {
@@ -18,7 +20,7 @@ function ${1:name}(${2:arguments}) {
 ${0}
 }
 
-//////////// React ////////////////
+## React  
 
 rnfe
 import React from 'react'
@@ -46,5 +48,6 @@ return (
 )
 }
 
-////////// Turbo Consolelog ////////////
+## Turbo Consolelog   
+
 Ctrl+Alt+L
